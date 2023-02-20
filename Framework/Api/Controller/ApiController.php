@@ -776,7 +776,7 @@ class ApiController extends AbstractController
         if (\count($pathSegments) === 0) {
             $definition = $first['definition'];
             $events = $this->executeWriteOperation($definition, $payload, $context, $type);
-            $event = $events->getEventByEntityName($definition->getEntityName());
+            $event = $events->getEventByEntityName($definition->getEntityName() || $definition instanceof EntityTranslationDefinition);
             $eventIds = $event->getIds();
             $entityId = array_pop($eventIds);
 
